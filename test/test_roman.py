@@ -68,3 +68,26 @@ class TestRoman(unittest.TestCase):
         self.assertEqual('DCC', roman(700))
         self.assertEqual('DCCC', roman(800))
         self.assertEqual('CM', roman(900))
+
+        self.assertEqual('M', roman(1000))
+        self.assertEqual('MC', roman(1100))
+        self.assertEqual('MCC', roman(1200))
+        self.assertEqual('MCCC', roman(1300))
+        self.assertEqual('MCD', roman(1400))
+        self.assertEqual('MD', roman(1500))
+        self.assertEqual('MDC', roman(1600))
+        self.assertEqual('MDCC', roman(1700))
+        self.assertEqual('MDCCC', roman(1800))
+        self.assertEqual('MCM', roman(1900))
+
+        self.assertEqual('MM', roman(2000))
+        self.assertEqual('MMM', roman(3000))
+
+        self.assertEqual('CCCXCIX', roman(399))
+        self.assertEqual('MCMLXIX', roman(1969))
+        self.assertEqual('MCMXCVIII', roman(1998))
+        self.assertEqual('MMMCMXCIX', roman(3999))
+
+        with self.assertRaises(ValueError):
+            roman(4000)
+
