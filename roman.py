@@ -10,14 +10,27 @@ def roman(number):
     if number < 1:
         raise ValueError('Number must be strictly positive')
 
-    return _units(number)
+    tens = number / 10 % 10
+    units = number % 10
+    #print "Tens: %d, Units: %d" % (tens, units)
+    return _tens(tens) + _units(units)
 
-def _units(number):
-    if number <= 3:
-        return 'I' * number
-    elif number <= 5:
-        return ('I' * (5 - number)) + 'V'
-    elif number <= 8:
-        return 'V' + ('I' * (number - 5))
+def _digit(digit, one, five, ten):
+    if digit == 0:
+        return ''
+    elif digit <= 3:
+        return one * digit
+    elif digit <= 5:
+        return (one * (5 - digit)) + five
+    elif digit <= 8:
+        return five + (one * (digit - 5))
+    elif digit < 10:
+        return (one * (10 - digit)) + ten
     else:
-        return ('I' * (10 - number)) + 'X'
+        raise LogicError('Digit %d greater than 10' % digit)
+
+def _units(digit):
+    return _digit(digit, 'I', 'V', 'X')
+
+def _tens(digit):
+    return _digit(digit, 'X', 'L', 'C')
