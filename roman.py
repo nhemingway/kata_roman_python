@@ -9,4 +9,7 @@
 # 1000	M
 
 def roman(number):
+    if number < 1:
+        raise ValueError('Number must be strictly positive')
+
     return 'I'
