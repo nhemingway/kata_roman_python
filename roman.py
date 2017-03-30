@@ -10,10 +10,11 @@ def roman(number):
     if number < 1:
         raise ValueError('Number must be strictly positive')
 
+    hundreds = number / 100 % 10
     tens = number / 10 % 10
     units = number % 10
     #print "Tens: %d, Units: %d" % (tens, units)
-    return _tens(tens) + _units(units)
+    return _hundreds(hundreds) + _tens(tens) + _units(units)
 
 def _digit(digit, one, five, ten):
     if digit == 0:
@@ -34,3 +35,6 @@ def _units(digit):
 
 def _tens(digit):
     return _digit(digit, 'X', 'L', 'C')
+
+def _hundreds(digit):
+    return _digit(digit, 'C', 'D', 'M')
